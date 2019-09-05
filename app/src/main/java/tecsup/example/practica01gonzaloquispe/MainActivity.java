@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Vector;
 
@@ -14,13 +15,15 @@ public class MainActivity extends AppCompatActivity {
     /* CREANDO OBJETOS PARA LOS BOTONES
      */
     Button bt1,bt2,bt3,bt4,bt5,bt6,bt7,bt8,bt9,bt0;
-    Button bt_suma,bt_resta,bt_multiplicacion,bt_division;
+    Button bt_suma,bt_resta,bt_multiplicacion,bt_division,bt_modulo;
 
     Button bt_ac,bt_c,bt_cambiarSigno;
 
     Button bt_punto,bt_igual;
 
     EditText et_num;
+
+    TextView txt_opAnt;
 
     /*
     CREANDO OTRAS VARIABLES PARA QUE LA CALCULADORA FUNCIONE
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         bt_ac=findViewById(R.id.bt_ac);
         bt_c=findViewById(R.id.bt_c);
         bt_cambiarSigno=findViewById(R.id.bt_cambiarSigno);
@@ -74,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
 
         bt_punto=findViewById(R.id.bt_punto);
         bt_igual=findViewById(R.id.bt_igual);
+
+        txt_opAnt=findViewById(R.id.txt_OpAnt);
+
+
+        bt_modulo=findViewById(R.id.bt_modulo);
+
 
         /*
         LISTENERS:
@@ -216,6 +226,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 division();
+            }
+        });
+
+        bt_modulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modulo();
             }
         });
 
@@ -364,5 +381,12 @@ public class MainActivity extends AppCompatActivity {
         operacion_concatenada=false;
         et_num.setText(numPantalla);
     }
+
+
+    private void llenar_opAnt(){
+        txt_opAnt.setText(numPantalla);
+    }
+
+
 
 }
