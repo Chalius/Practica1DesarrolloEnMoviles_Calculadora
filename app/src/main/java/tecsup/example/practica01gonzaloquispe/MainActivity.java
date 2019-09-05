@@ -229,15 +229,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void anadirNumero(int num){
         et_num.setText("");
-        if(numPantalla.length()>=1 && numPantalla.substring(0,1)=="0"  ){
-            numPantalla=numPantalla.substring(1,numPantalla.length());
+        if(numPantalla.length()>=1 && numPantalla.substring(0,1).equals("0")  ){
+            numPantalla=numPantalla.substring(1);
 
         }
 
         /*
         IF EN CASO DE QUE NUMTOTAL SEA 0.
          */
-        if(numPantalla=="0") et_num.setText("");
+        if(numPantalla.equals("0")) et_num.setText("");
         numPantalla+=num;
         et_num.setText(numPantalla);
     }
@@ -321,6 +321,16 @@ public class MainActivity extends AppCompatActivity {
         operacion_concatenada=true;
     }
 
+
+    private void modulo(){
+        if(operacion_concatenada==true) igual();
+        num1 = Double.parseDouble(numPantalla);
+        AC("sinNums");
+        if(!operacion_concatenada) et_num.setText(""+ num1);
+        operacion_anterior="modulo";
+        operacion_concatenada=true;
+    }
+
     private void igual(){
         if(operacion_anterior=="suma") {
             num2 = Double.parseDouble(numPantalla);
@@ -336,6 +346,9 @@ public class MainActivity extends AppCompatActivity {
         }else if(operacion_anterior=="division"){
             num2 = Double.parseDouble(numPantalla);
             numPantalla = "" + (num1 / num2);
+        }else if(operacion_anterior=="modulo"){
+            num2 = Double.parseDouble(numPantalla);
+            numPantalla = "" + (num1 % num2);
         }
 
         /*
